@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Duke {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException{
         Scanner sc = new Scanner(System.in);
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
@@ -23,8 +23,12 @@ public class Duke {
                 }
             }
             else if(input.startsWith("mark")){
+
                 String[] cmd = input.split(" ");
                 int indexofTask = Integer.parseInt(cmd[1])-1;
+                if(indexofTask>=tasks.size()){
+                    throw new DukeException("☹ OOPS!!! number is out of list");
+                }
                 tasks.get(indexofTask).markAsDone();
                 System.out.println("Nice! I've marked this task as done:");
                 System.out.println(tasks.get(indexofTask));
@@ -32,11 +36,17 @@ public class Duke {
             else if(input.startsWith("unmark")){
                 String[] cmd = input.split(" ");
                 int indexofTask = Integer.parseInt(cmd[1])-1;
+                if(indexofTask>=tasks.size()){
+                    throw new DukeException("☹ OOPS!!! number is out of list");
+                }
                 tasks.get(indexofTask).markAsNotDone();
                 System.out.println("OK, I've marked this task as not done yet!");
                 System.out.println(tasks.get(indexofTask));
             }
             else if(input.startsWith("todo")){
+                if(input.equals("todo")){
+                    throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                }
                 String[] description = input.split("todo ");
                 Task t= new Todo(description[1]);
                 tasks.add(t);
@@ -45,6 +55,9 @@ public class Duke {
                 System.out.println("Now you have " + tasks.size() + " tasks in the list.");
             }
             else if(input.startsWith("deadline")){
+                if (input.equals("deadline")) {
+                    throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+                }
                 String[] cmd = input.split("deadline ");
                 String description = cmd[1].split(" /by")[0];
                 String date = cmd[1].split("/by ")[1];
@@ -55,6 +68,9 @@ public class Duke {
                 System.out.println("Now you have " + tasks.size() + " tasks in the list.");
             }
             else if(input.startsWith("event")){
+                if (input.equals("event")) {
+                    throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
+                }
                 String[] cmd = input.split("event ");
                 String description = cmd[1].split(" /at")[0];
                 String time = cmd[1].split("/at ")[1];
@@ -67,7 +83,7 @@ public class Duke {
             }
 
             else {
-                System.out.println("Invalid input");
+                throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
     }
