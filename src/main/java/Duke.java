@@ -26,21 +26,21 @@ public class Duke {
                 String[] cmd = input.split(" ");
                 int indexofTask = Integer.parseInt(cmd[1])-1;
                 tasks.get(indexofTask).markAsDone();
-                System.out.println("Nice! I've marked this task as done: ");
+                System.out.println("Nice! I've marked this task as done:");
                 System.out.println(tasks.get(indexofTask));
             }
             else if(input.startsWith("unmark")){
                 String[] cmd = input.split(" ");
                 int indexofTask = Integer.parseInt(cmd[1])-1;
                 tasks.get(indexofTask).markAsNotDone();
-                System.out.println("OK, I've marked this task as not done yet: ");
+                System.out.println("OK, I've marked this task as not done yet!");
                 System.out.println(tasks.get(indexofTask));
             }
             else if(input.startsWith("todo")){
                 String[] description = input.split("todo ");
                 Task t= new Todo(description[1]);
                 tasks.add(t);
-                System.out.println("Got it. I've added this task: ");
+                System.out.println("Got it. I've added this task:");
                 System.out.println(t);
                 System.out.println("Now you have " + tasks.size() + " tasks in the list.");
             }
@@ -50,7 +50,7 @@ public class Duke {
                 String date = cmd[1].split("/by ")[1];
                 Task t = new Deadline(description, date);
                 tasks.add(t);
-                System.out.println("Got it. I've added this task: ");
+                System.out.println("Got it. I've added this task:");
                 System.out.println(t);
                 System.out.println("Now you have " + tasks.size() + " tasks in the list.");
             }
@@ -60,7 +60,7 @@ public class Duke {
                 String time = cmd[1].split("/at ")[1];
                 Task t = new Event(description, time);
                 tasks.add(t);
-                System.out.println("Got it. I've added this task: ");
+                System.out.println("Got it. I've added this task:");
                 System.out.println(t);
                 System.out.println("Now you have " + tasks.size() + " tasks in the list.");
 
