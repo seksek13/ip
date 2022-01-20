@@ -16,7 +16,7 @@ public class Duke {
                 System.out.println("Bye. Hope to see you again soon!");
             }
             else if(input.equals("list")){
-                System.out.println(" Here are the tasks in your list:");
+                System.out.println("Here are the tasks in your list:");
                 int tasksSize = tasks.size()+1;
                 for(int i=1;i<tasksSize;i++){
                     System.out.println(i + "." + tasks.get(i-1));
@@ -27,14 +27,14 @@ public class Duke {
                 int indexofTask = Integer.parseInt(cmd[1])-1;
                 tasks.get(indexofTask).markAsDone();
                 System.out.println("Nice! I've marked this task as done: ");
-                System.out.println("[" + tasks.get(indexofTask).getStatusIcon()+"] " + tasks.get(indexofTask).description );
+                System.out.println(tasks.get(indexofTask));
             }
             else if(input.startsWith("unmark")){
                 String[] cmd = input.split(" ");
                 int indexofTask = Integer.parseInt(cmd[1])-1;
                 tasks.get(indexofTask).markAsNotDone();
                 System.out.println("OK, I've marked this task as not done yet: ");
-                System.out.println("[" + tasks.get(indexofTask).getStatusIcon()+"] " + tasks.get(indexofTask).description );
+                System.out.println(tasks.get(indexofTask));
             }
             else if(input.startsWith("todo")){
                 String[] description = input.split("todo ");
