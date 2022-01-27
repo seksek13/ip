@@ -1,14 +1,6 @@
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.File;
-import java.io.FileNotFoundException;
+package duke;
 import java.io.IOException;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.Writer;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 
 public class Duke {
 
