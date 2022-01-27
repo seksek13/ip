@@ -1,5 +1,7 @@
-import java.io.*;
 import java.util.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class Duke {
     public static void main(String[] args) throws DukeException{
@@ -61,7 +63,8 @@ public class Duke {
                 String[] cmd = input.split("deadline ");
                 String description = cmd[1].split(" /by")[0];
                 String date = cmd[1].split("/by ")[1];
-                Task t = new Deadline(description, date);
+                LocalDate d1 = LocalDate.parse(date);
+                Task t = new Deadline(description, d1);
                 tasks.add(t);
                 System.out.println("Got it. I've added this task:");
                 System.out.println(t);
@@ -74,7 +77,8 @@ public class Duke {
                 String[] cmd = input.split("event ");
                 String description = cmd[1].split(" /at")[0];
                 String time = cmd[1].split("/at ")[1];
-                Task t = new Event(description, time);
+                LocalDate d1 = LocalDate.parse(time);
+                Task t = new Event(description, d1);
                 tasks.add(t);
                 System.out.println("Got it. I've added this task:");
                 System.out.println(t);
