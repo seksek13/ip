@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.Writer;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class Duke {
     public static void main(String[] args) throws DukeException, IOException {
@@ -33,7 +36,8 @@ public class Duke {
                         if(dataSplited.length!=4)
                             System.out.println("data: " + data + " not in correct format!");
                         else{
-                            Task t = new Deadline(dataSplited[2],dataSplited[3],done);
+                            LocalDate d1 = LocalDate.parse(dataSplited[3]);
+                            Task t = new Deadline(dataSplited[2],d1,done);
                             tasks.add(t);
                         }
                         break;
@@ -41,7 +45,8 @@ public class Duke {
                         if(dataSplited.length!=4)
                             System.out.println("data: " + data + " not in correct format!");
                         else{
-                            Task t = new Event(dataSplited[2], dataSplited[3], done);
+                            LocalDate d1 = LocalDate.parse(dataSplited[3]);
+                            Task t = new Event(dataSplited[2], d1, done);
                             tasks.add(t);
                         }
                         break;
@@ -162,7 +167,10 @@ public class Duke {
                 String[] cmd = input.split("deadline ");
                 String description = cmd[1].split(" /by")[0];
                 String date = cmd[1].split("/by ")[1];
-                Task t = new Deadline(description, date, false);
+
+                LocalDate d1 = LocalDate.parse(date);
+                Task t = new Deadline(description, d1,false);
+
                 tasks.add(t);
                 String data = "D,0," + description + "," + date;
                 addToFile(data,file);
@@ -177,7 +185,10 @@ public class Duke {
                 String[] cmd = input.split("event ");
                 String description = cmd[1].split(" /at")[0];
                 String time = cmd[1].split("/at ")[1];
-                Task t = new Event(description, time, false);
+
+                LocalDate d1 = LocalDate.parse(time);
+                Task t = new Event(description, d1,false);
+
                 tasks.add(t);
                 String data = "E,0," + description + "," + time;
                 addToFile(data,file);
