@@ -1,4 +1,5 @@
 package duke;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -32,6 +33,7 @@ public class Duke {
         ui.showWelcomeMessage();
         boolean isExit = false;
 
+
         while(!isExit) {
             try{
                 String input = ui.readCommand();
@@ -46,10 +48,10 @@ public class Duke {
                     int indexOfTask = Integer.parseInt(cmds[1]);
                     // index is not in array
                     if (indexOfTask > tasks.size()) {
-                       ui.showOutOfArray();
-                    } else{
+                        ui.showOutOfArray();
+                    } else {
                         Task mark = tasks.markTask(indexOfTask - 1);
-                        storage.updateTaskStatus(indexOfTask,true);
+                        storage.updateTaskStatus(indexOfTask, true);
                         ui.showMarkTask(mark);
                     }
                 } else if (cmds[0].equals("unmark")) {
@@ -59,7 +61,7 @@ public class Duke {
                         ui.showOutOfArray();
                     } else{
                         Task mark = tasks.UnmarkTask(indexOfTask - 1);
-                        storage.updateTaskStatus(indexOfTask,false);
+                        storage.updateTaskStatus(indexOfTask, false);
                         ui.showUnmarkTask(mark);
                     }
                 } else if (cmds[0].equals("todo")) {
@@ -90,14 +92,22 @@ public class Duke {
                     int index = Integer.parseInt(cmds[1]);
                     // index is not in array
                     if (index > tasks.size()) {
-                       ui.showOutOfArray();
-                    } else{
+                        ui.showOutOfArray();
+                    } else {
                         Task t = tasks.deleteTask(index - 1);
                         storage.deleteFileData(index);
                         ui.showDeleteTask(t, tasks.size());
                     }
+                } else if (input.startsWith("find")) {
+                    TaskList t = new TaskList();
+                    Task[] temp = tasks.find(cmds[1]);
+                    int count = 0;
+                    while (temp[count] != null) {
+                        t.addTask(temp[count]);
+                        count++;
+                    }
+                    ui.showFindTask(t);
                 }
-
             } catch (DukeException | IOException e) {
                 ui.showError(e.getMessage());
             }

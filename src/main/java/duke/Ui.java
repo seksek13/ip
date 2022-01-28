@@ -107,4 +107,10 @@ public class Ui {
         System.out.println(message);
     }
 
+    public void showFindTask(TaskList tasks){
+        System.out.println("Here are the matching tasks in your list:");
+        System.out.println(tasks);
+    }
+
+
 }

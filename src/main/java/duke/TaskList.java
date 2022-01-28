@@ -33,7 +33,7 @@ public class TaskList {
     /**
      * Add task to task list
      *
-     * @param task
+     * @param t
      */
     public void addTask(Task t) {
         tasks.add(t);
@@ -74,6 +74,7 @@ public class TaskList {
         return t;
     }
 
+
     /**
      * Get task based on index
      *
@@ -85,13 +86,28 @@ public class TaskList {
     }
 
     /**
+     * Find task in list
+     * @param key
+     * @return
+     */
+    public Task[] find(String key){
+        Task[] t = new Task[100];
+        int count = 0;
+        for(int i=0;i< tasks.size();i++){
+            if(tasks.get(i).description.contains(key)) {
+                t[count] = tasks.get(i);
+                count++;
+            }
+        }
+        return t;
+    }
+
+    /**
      *Overrides toString method
      *
      * @return tasks in task list
      */
-    @Override
     public String toString() {
-
         String taskList = "";
         for(int i=0;i< tasks.size();i++){
             int count = i+1;
