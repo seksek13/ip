@@ -50,7 +50,7 @@ public class Duke {
                         ui.showOutOfArray();
                     }
                     else{
-                        Task mark = tasks.markTask(indexOfTask - 1);
+                        Task mark = tasks.UnmarkTask(indexOfTask - 1);
                         storage.updateTaskStatus(indexOfTask,false);
                         ui.showUnmarkTask(mark);
                     }
