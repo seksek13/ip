@@ -22,68 +22,65 @@ public class Duke {
 
     public void run() {
         ui.showWelcomeMessage();
-        boolean exit = false;
+        boolean isExit = false;
 
-        while(!exit) {
+        while(!isExit) {
             try{
                 String input = ui.readCommand();
-                String[] cmd = Parser.parse(input);
-                if (cmd[0].equals("bye")) {
-                    exit = true;
+                String[] cmds = Parser.parse(input);
+                if (cmds[0].equals("bye")) {
+                    isExit = true;
                     ui.showBye();
 
-                } else if (cmd[0].equals("list")) {
+                } else if (cmds[0].equals("list")) {
                     ui.showTaskList(tasks);
-                } else if (cmd[0].equals("mark")) {
-                    int indexOfTask = Integer.parseInt(cmd[1]);
+                } else if (cmds[0].equals("mark")) {
+                    int indexOfTask = Integer.parseInt(cmds[1]);
                     if (indexOfTask > tasks.size()) {
                        ui.showOutOfArray();
-                    }
-                    else{
+                    } else{
                         Task mark = tasks.markTask(indexOfTask - 1);
                         storage.updateTaskStatus(indexOfTask,true);
                         ui.showMarkTask(mark);
                     }
-                } else if (cmd[0].equals("unmark")) {
-                    int indexOfTask = Integer.parseInt(cmd[1]);
+                } else if (cmds[0].equals("unmark")) {
+                    int indexOfTask = Integer.parseInt(cmds[1]);
                     if (indexOfTask > tasks.size()) {
                         ui.showOutOfArray();
-                    }
-                    else{
+                    } else{
                         Task mark = tasks.UnmarkTask(indexOfTask - 1);
                         storage.updateTaskStatus(indexOfTask,false);
                         ui.showUnmarkTask(mark);
                     }
-                } else if (cmd[0].equals("todo")) {
-                    Task t = new Todo(cmd[1], false);
+                } else if (cmds[0].equals("todo")) {
+                    Task t = new Todo(cmds[1], false);
                     tasks.addTask(t);
-                    String data = "T,0," + cmd[1];
+                    String data = "T,0," + cmds[1];
                     storage.addToFile(data);
                     ui.showAddTask(t, tasks.size());
 
-                } else if (cmd[0].equals("deadline")) {
+                } else if (cmds[0].equals("deadline")) {
                     DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-                    LocalDateTime formattedDate = LocalDateTime.parse(cmd[2], format);
-                    Task t = new Deadline(cmd[1], formattedDate, false);
+                    LocalDateTime formattedDate = LocalDateTime.parse(cmds[2], format);
+                    Task t = new Deadline(cmds[1], formattedDate, false);
                     tasks.addTask(t);
-                    String data = "D,0," + cmd[1] + "," + cmd[2];
+                    String data = "D,0," + cmds[1] + "," + cmds[2];
                     storage.addToFile(data);
                     ui.showAddTask(t, tasks.size());
                 } else if (input.startsWith("event")) {
                     DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-                    LocalDateTime formattedDate = LocalDateTime.parse(cmd[2], format);
-                    Task t = new Event(cmd[1], formattedDate, false);
+                    LocalDateTime formattedDate = LocalDateTime.parse(cmds[2], format);
+                    Task t = new Event(cmds[1], formattedDate, false);
                     tasks.addTask(t);
-                    String data = "E,0," + cmd[1] + "," + cmd[2];
+                    String data = "E,0," + cmds[1] + "," + cmds[2];
                     storage.addToFile(data);
                     ui.showAddTask(t, tasks.size());
 
                 } else if (input.startsWith("delete")) {
-                    int index = Integer.parseInt(cmd[1]);
+                    int index = Integer.parseInt(cmds[1]);
                     if (index > tasks.size()) {
                        ui.showOutOfArray();
-                    }
-                    else{
+                    } else{
                         Task t = tasks.deleteTask(index - 1);
                         storage.deleteFileData(index);
                         ui.showDeleteTask(t, tasks.size());
