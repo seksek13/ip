@@ -1,4 +1,9 @@
 package duke;
+
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Parser {
 
     public static String[] parse(String command) throws DukeException {
@@ -34,8 +39,16 @@ public class Parser {
             }
             String[] cmd = command.split("deadline ");
             String[] task = cmd[1].split("/by ");
+
             if(task.length!=2) {
                 throw new DukeException("OOPS!!! The description of the deadline is not complete!");
+            }
+            try {
+                DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                LocalDateTime formattedDate = LocalDateTime.parse(task[1], format);
+
+            } catch (DateTimeException e) {
+                throw new DukeException("'" + task[1] + "' is in wrong format! Please enter date and time as dd/MM/yyyy HH:mm");
             }
             String[] description = new String[] { "deadline", task[0], task[1] };
             return description;
@@ -45,8 +58,16 @@ public class Parser {
             }
             String[] cmd = command.split("event ");
             String[] task = cmd[1].split("/at ");
+
             if(task.length!=2){
                 throw new DukeException("☹ OOPS!!! The description of the event is not complete!");
+            }
+            try {
+                DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                LocalDateTime formattedDate = LocalDateTime.parse(task[1], format);
+
+            } catch (DateTimeException e) {
+                throw new DukeException("'" + task[1] + "' is in wrong format! Please enter date and time as dd/MM/yyyy HH:mm");
             }
             String[] description = new String[] { "event", task[0], task[1] };
             return description;

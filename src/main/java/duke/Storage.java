@@ -1,6 +1,8 @@
 package duke;
 import java.io.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -37,8 +39,10 @@ public class Storage {
                         if(dataSplited.length!=4)
                             System.out.println("data: " + data + " not in correct format!");
                         else{
-                            LocalDate d1 = LocalDate.parse(dataSplited[3]);
-                            Task t = new Deadline(dataSplited[2],d1,done);
+                            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                            LocalDateTime formattedDate = LocalDateTime.parse(dataSplited[3], format);
+
+                            Task t = new Deadline(dataSplited[2],formattedDate,done);
                             tasks.add(t);
                         }
                         break;
@@ -46,8 +50,9 @@ public class Storage {
                         if(dataSplited.length!=4)
                             System.out.println("data: " + data + " not in correct format!");
                         else{
-                            LocalDate d1 = LocalDate.parse(dataSplited[3]);
-                            Task t = new Event(dataSplited[2], d1, done);
+                            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                            LocalDateTime formattedDate = LocalDateTime.parse(dataSplited[3], format);
+                            Task t = new Event(dataSplited[2], formattedDate, done);
                             tasks.add(t);
                         }
                         break;

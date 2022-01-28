@@ -1,6 +1,8 @@
 package duke;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Duke {
 
@@ -15,7 +17,6 @@ public class Duke {
             tasks = new TaskList(storage.load());
         } catch (IOException e) {
             ui.showFileError();
-            tasks = new TaskList();
         }
     }
 
@@ -61,15 +62,17 @@ public class Duke {
                     ui.showAddTask(t, tasks.size());
 
                 } else if (cmd[0].equals("deadline")) {
-                    LocalDate d1 = LocalDate.parse(cmd[2]);
-                    Task t = new Deadline(cmd[1], d1, false);
+                    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                    LocalDateTime formattedDate = LocalDateTime.parse(cmd[2], format);
+                    Task t = new Deadline(cmd[1], formattedDate, false);
                     tasks.addTask(t);
                     String data = "D,0," + cmd[1] + "," + cmd[2];
                     storage.addToFile(data);
                     ui.showAddTask(t, tasks.size());
                 } else if (input.startsWith("event")) {
-                    LocalDate d1 = LocalDate.parse(cmd[2]);
-                    Task t = new Event(cmd[1], d1, false);
+                    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                    LocalDateTime formattedDate = LocalDateTime.parse(cmd[2], format);
+                    Task t = new Event(cmd[1], formattedDate, false);
                     tasks.addTask(t);
                     String data = "E,0," + cmd[1] + "," + cmd[2];
                     storage.addToFile(data);
@@ -86,9 +89,9 @@ public class Duke {
                         ui.showDeleteTask(t, tasks.size());
                     }
                 }
+
             } catch (DukeException | IOException e) {
                 ui.showError(e.getMessage());
-                tasks = new TaskList();
             }
         }
     }
