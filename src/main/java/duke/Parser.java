@@ -6,6 +6,13 @@ import java.time.format.DateTimeFormatter;
 
 public class Parser {
 
+    /**
+     * Getting required info from user input
+     *
+     * @param command User input
+     * @return String list to store required info
+     * @throws DukeException
+     */
     public static String[] parse(String command) throws DukeException {
 
         if (command.equals("bye")) {

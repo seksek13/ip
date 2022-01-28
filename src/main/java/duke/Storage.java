@@ -14,6 +14,12 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads task list from file
+     *
+     * @return List of task in file
+     * @throws IOException
+     */
     public ArrayList<Task> load() throws IOException {
         ArrayList<Task> tasks = new ArrayList<Task>(100);
         File file;
@@ -76,6 +82,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Add task to file
+     *
+     * @param data
+     * @throws IOException
+     */
     public void addToFile(String data) throws IOException {
         File file = new File(filePath);
         Writer output = new BufferedWriter(new FileWriter(file, true));
@@ -83,6 +95,12 @@ public class Storage {
         output.close();
     }
 
+    /**
+     * Delete task from file
+     *
+     * @param index
+     * @throws IOException
+     */
     public void deleteFileData(int index) throws IOException {
 
         File file = new File(filePath);
@@ -102,6 +120,12 @@ public class Storage {
         writer.flush();
     }
 
+    /**
+     * Mark task as done/undone in file
+     *
+     * @param index
+     * @throws IOException
+     */
     public void updateTaskStatus(int index, boolean done) throws IOException {
         File file = new File(filePath);
         Scanner scanner = new Scanner(file);

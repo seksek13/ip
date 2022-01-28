@@ -10,6 +10,11 @@ public class Duke {
     private TaskList tasks;
     private Storage storage;
 
+    /**
+     * Constructor for Duke class
+     *
+     * @param filePath
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -20,6 +25,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Method to run entire programme
+     */
     public void run() {
         ui.showWelcomeMessage();
         boolean exit = false;
@@ -36,6 +44,7 @@ public class Duke {
                     ui.showTaskList(tasks);
                 } else if (cmd[0].equals("mark")) {
                     int indexOfTask = Integer.parseInt(cmd[1]);
+                    // index is not in array
                     if (indexOfTask > tasks.size()) {
                        ui.showOutOfArray();
                     }
@@ -46,6 +55,7 @@ public class Duke {
                     }
                 } else if (cmd[0].equals("unmark")) {
                     int indexOfTask = Integer.parseInt(cmd[1]);
+                    // index is not in array
                     if (indexOfTask > tasks.size()) {
                         ui.showOutOfArray();
                     }
@@ -62,6 +72,7 @@ public class Duke {
                     ui.showAddTask(t, tasks.size());
 
                 } else if (cmd[0].equals("deadline")) {
+                    //format date time
                     DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
                     LocalDateTime formattedDate = LocalDateTime.parse(cmd[2], format);
                     Task t = new Deadline(cmd[1], formattedDate, false);
@@ -80,6 +91,7 @@ public class Duke {
 
                 } else if (input.startsWith("delete")) {
                     int index = Integer.parseInt(cmd[1]);
+                    // index is not in array
                     if (index > tasks.size()) {
                        ui.showOutOfArray();
                     }
@@ -96,6 +108,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Duke class main method
+     *
+     * @param args
+     */
     public static void main (String[] args) {
         new Duke("./data/duke.txt").run();
     }
