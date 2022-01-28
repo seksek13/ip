@@ -39,6 +39,9 @@ public class TaskList {
         return t;
     }
 
+    public Task getTask(int index) {
+        return tasks.get(index);
+    }
 
     @Override
     public String toString() {
