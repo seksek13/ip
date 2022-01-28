@@ -39,10 +39,22 @@ public class TaskList {
         return t;
     }
 
+    public Task[] find(String key){
+        Task[] t = new Task[100];
+        int count = 0;
+        for(int i=0;i< tasks.size();i++){
+            if(tasks.get(i).description.contains(key)) {
+                t[count] = tasks.get(i);
+                count++;
+            }
+        }
+        return t;
+    }
+
     public Task getTask(int index) {
         return tasks.get(index);
     }
-
+    
     @Override
     public String toString() {
 

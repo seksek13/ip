@@ -71,6 +71,14 @@ public class Parser {
             }
             String[] description = new String[] { "event", task[0], task[1] };
             return description;
+        } else if(command.startsWith("find")){
+            if(command.equals("find")){
+                throw new DukeException("☹ OOPS!!! Please enter what to find!");
+            }
+            String[] cmd = command.split("find ");
+            String[] descriptions = new String[]{ "find", cmd[1]};
+            return descriptions;
+
         } else {
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }

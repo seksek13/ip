@@ -1,4 +1,5 @@
 package duke;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,8 +25,8 @@ public class Duke {
         ui.showWelcomeMessage();
         boolean exit = false;
 
-        while(!exit) {
-            try{
+        while (!exit) {
+            try {
                 String input = ui.readCommand();
                 String[] cmd = Parser.parse(input);
                 if (cmd[0].equals("bye")) {
@@ -37,21 +38,19 @@ public class Duke {
                 } else if (cmd[0].equals("mark")) {
                     int indexOfTask = Integer.parseInt(cmd[1]);
                     if (indexOfTask > tasks.size()) {
-                       ui.showOutOfArray();
-                    }
-                    else{
+                        ui.showOutOfArray();
+                    } else {
                         Task mark = tasks.markTask(indexOfTask - 1);
-                        storage.updateTaskStatus(indexOfTask,true);
+                        storage.updateTaskStatus(indexOfTask, true);
                         ui.showMarkTask(mark);
                     }
                 } else if (cmd[0].equals("unmark")) {
                     int indexOfTask = Integer.parseInt(cmd[1]);
                     if (indexOfTask > tasks.size()) {
                         ui.showOutOfArray();
-                    }
-                    else{
+                    } else {
                         Task mark = tasks.UnmarkTask(indexOfTask - 1);
-                        storage.updateTaskStatus(indexOfTask,false);
+                        storage.updateTaskStatus(indexOfTask, false);
                         ui.showUnmarkTask(mark);
                     }
                 } else if (cmd[0].equals("todo")) {
@@ -81,14 +80,24 @@ public class Duke {
                 } else if (input.startsWith("delete")) {
                     int index = Integer.parseInt(cmd[1]);
                     if (index > tasks.size()) {
-                       ui.showOutOfArray();
-                    }
-                    else{
+                        ui.showOutOfArray();
+                    } else {
                         Task t = tasks.deleteTask(index - 1);
                         storage.deleteFileData(index);
                         ui.showDeleteTask(t, tasks.size());
                     }
+                } else if (input.startsWith("find")) {
+                    TaskList t = new TaskList();
+                    Task[] temp = tasks.find(cmd[1]);
+                    int count = 0;
+                    while (temp[count] != null) {
+                        t.addTask(temp[count]);
+                        count++;
+                    }
+                    ui.showFindTask(t);
+
                 }
+
 
             } catch (DukeException | IOException e) {
                 ui.showError(e.getMessage());
@@ -96,7 +105,7 @@ public class Duke {
         }
     }
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         new Duke("./data/duke.txt").run();
     }
 }
