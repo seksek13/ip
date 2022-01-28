@@ -16,30 +16,30 @@ public class Parser {
     public static String[] parse(String command) throws DukeException {
 
         if (command.equals("bye")) {
-            String[] description = new String[] { "bye" };
-            return description;
+            String[] descriptions = new String[] { "bye" };
+            return descriptions;
         } else if (command.equals("list")) {
-            String[] description = new String[] { "list" };
-            return description;
+            String[] descriptions = new String[] { "list" };
+            return descriptions;
         } else if (command.startsWith("mark")) {
             String[] cmd = command.split(" ");
-            String[] description = new String[] { "mark", cmd[1]};
-            return description;
+            String[] descriptions = new String[] { "mark", cmd[1]};
+            return descriptions;
         } else if(command.startsWith("unmark")){
             String[] cmd = command.split(" ");
-            String[] description = new String[] { "unmark", cmd[1] };
-            return description;
+            String[] descriptions = new String[] { "unmark", cmd[1] };
+            return descriptions;
         } else if (command.startsWith("delete")) {
             String[] cmd = command.split(" ");
-            String[] description = new String[] { "delete", cmd[1] };
-            return description;
+            String[] descriptions = new String[] { "delete", cmd[1] };
+            return descriptions;
         } else if (command.startsWith("todo")) {
-            String[] cmd = command.split("todo ");
-            if (cmd.length!=2) {
+            String[] cmds = command.split("todo ");
+            if (cmds.length!=2) {
                 throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
             }
-            String[] description = new String[] { "todo", cmd[1] };
-            return description;
+            String[] descriptions = new String[] { "todo", cmds[1] };
+            return descriptions;
         } else if (command.startsWith("deadline")) {
             if (command.equals("deadline")) {
                 throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
@@ -57,8 +57,8 @@ public class Parser {
             } catch (DateTimeException e) {
                 throw new DukeException("'" + task[1] + "' is in wrong format! Please enter date and time as dd/MM/yyyy HH:mm");
             }
-            String[] description = new String[] { "deadline", task[0], task[1] };
-            return description;
+            String[] descriptions = new String[] { "deadline", task[0], task[1] };
+            return descriptions;
         } else if (command.startsWith("event")) {
             if (command.equals("event")) {
                 throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
@@ -76,8 +76,8 @@ public class Parser {
             } catch (DateTimeException e) {
                 throw new DukeException("'" + task[1] + "' is in wrong format! Please enter date and time as dd/MM/yyyy HH:mm");
             }
-            String[] description = new String[] { "event", task[0], task[1] };
-            return description;
+            String[] descriptions = new String[] { "event", task[0], task[1] };
+            return descriptions;
         } else {
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
