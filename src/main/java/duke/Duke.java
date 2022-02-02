@@ -108,7 +108,7 @@ public class Duke {
                     }
                     ui.showFindTask(t);
                 }
-            } catch (DukeException | IOException e) {
+            } catch (DukeException | IOException  | IllegalArgumentException e) {
                 ui.showError(e.getMessage());
             }
         }

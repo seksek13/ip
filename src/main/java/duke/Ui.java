@@ -104,7 +104,7 @@ public class Ui {
      * @param message
      */
     public void showError(String message) {
-        System.out.println(message);
+        System.out.println("Error: " + message);
     }
 
     public void showFindTask(TaskList tasks){
