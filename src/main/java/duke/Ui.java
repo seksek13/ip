@@ -8,9 +8,9 @@ public class Ui {
     /**
      * Show welcome message
      */
-    public void showWelcomeMessage(){
-        System.out.println("Hello! I'm Sumikko :)");
-        System.out.println("What can I do for you?");
+    public String showWelcomeMessage(){
+        String welcomeMsg = "Hello! I'm Sumikko :)\n" +  "What can I do for you?";
+        return welcomeMsg;
     }
 
     /**
@@ -26,15 +26,17 @@ public class Ui {
     /**
      * Show error in finding file
      */
-    public void showFileError() {
-        System.out.println("No task list file found! Creating a new file for you (:");
+    public String showFileError() {
+        String errorMsg = "No task list file found! Creating a new file for you :)";
+        return errorMsg;
     }
 
     /**
      * Show that index keyed in is out of list
      */
-    public void showOutOfArray(){
-        System.out.println("Number of task is out of list!");
+    public String showOutOfArray(){
+        String outOfArrayMsg = "Number of task is out of list!";
+        return outOfArrayMsg;
     }
 
     /**
@@ -43,10 +45,10 @@ public class Ui {
      * @param task
      * @param size
      */
-    public void showAddTask(Task task, int size) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println(task);
-        System.out.println("Now you have " + size + " tasks in the list.");
+    public String showAddTask(Task task, int size) {
+        String addTaskMsg = "Got it. I've added this task:\n" + task + "\n" +
+                "Now you have " + size + " tasks in the list.";
+        return addTaskMsg;
     }
 
     /**
@@ -54,9 +56,9 @@ public class Ui {
      *
      * @param task
      */
-    public void showMarkTask(Task task) {
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(task);
+    public String showMarkTask(Task task) {
+        String markTaskMsg = "Nice! I've marked this task as done: \n" + task;
+        return markTaskMsg;
     }
 
     /**
@@ -64,9 +66,10 @@ public class Ui {
      *
      * @param task
      */
-    public void showUnmarkTask(Task task) {
-        System.out.println("OK, I've marked this task as not done yet!");
-        System.out.println(task);
+    public String showUnmarkTask(Task task) {
+        String unmarkTaskMsg = "OK, I've marked this task as not done yet!\n" + task;
+        return unmarkTaskMsg;
+
     }
 
     /**
@@ -75,10 +78,11 @@ public class Ui {
      * @param task
      * @param size
      */
-    public void showDeleteTask(Task task, int size) {
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(task);
-        System.out.println("Now you have " + size + " tasks in the list.");
+    public String showDeleteTask(Task task, int size) {
+        String deleteMsg = "Noted. I've removed this task:\n" + task +
+                "\nNow you have " + size + " tasks in the list.";
+        return deleteMsg;
+
     }
 
     /**
@@ -86,16 +90,18 @@ public class Ui {
      *
      * @param tasks
      */
-    public void showTaskList(TaskList tasks) {
-        System.out.println(tasks);
+    public String showTaskList(TaskList tasks) {
+
+        return tasks.toString();
     }
 
     /**
      * Show exit message
      *
      */
-    public void showBye() {
-        System.out.println("Bye bye. See you next time!");
+    public String showBye() {
+        String byeMsg = "Bye bye. See you next time!";
+        return byeMsg;
     }
 
     /**
@@ -103,13 +109,14 @@ public class Ui {
      *
      * @param message
      */
-    public void showError(String message) {
-        System.out.println("Error: " + message);
+    public String showError(String message) {
+        String errorMsg = "Error: " + message;
+        return errorMsg;
     }
 
-    public void showFindTask(TaskList tasks){
-        System.out.println("Here are the matching tasks in your list:");
-        System.out.println(tasks);
+    public String showFindTask(TaskList tasks){
+        String findTaskMsg = "Here are the matching tasks in your list:\n" + tasks;
+        return findTaskMsg;
     }
 
 
