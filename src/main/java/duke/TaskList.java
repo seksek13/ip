@@ -91,6 +91,7 @@ public class TaskList {
      * @return
      */
     public Task[] find(String key) {
+        assert tasks != null : "tasklist should not be null";
         Task[] t = new Task[100];
         int count = 0;
         for (int i = 0; i < tasks.size(); i++) {
