@@ -99,7 +99,8 @@ public class Ui {
      *
      */
     public String showBye() {
-        String byeMsg = "Bye bye. See you next time!";
+        String byeMsg = "Bye bye. See you next time!\n"
+                + "Closing application in 3 seconds.....";
         return byeMsg;
     }
 
