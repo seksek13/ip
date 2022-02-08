@@ -8,8 +8,8 @@ public class Ui {
     /**
      * Show welcome message
      */
-    public String showWelcomeMessage(){
-        String welcomeMsg = "Hello! I'm Sumikko :)\n" +  "What can I do for you?";
+    public String showWelcomeMessage() {
+        String welcomeMsg = "Hello! I'm Sumikko :)\n" + "What can I do for you?";
         return welcomeMsg;
     }
 
@@ -34,7 +34,7 @@ public class Ui {
     /**
      * Show that index keyed in is out of list
      */
-    public String showOutOfArray(){
+    public String showOutOfArray() {
         String outOfArrayMsg = "Number of task is out of list!";
         return outOfArrayMsg;
     }
@@ -46,8 +46,8 @@ public class Ui {
      * @param size
      */
     public String showAddTask(Task task, int size) {
-        String addTaskMsg = "Got it. I've added this task:\n" + task + "\n" +
-                "Now you have " + size + " tasks in the list.";
+        String addTaskMsg = "Got it. I've added this task:\n" + task + "\n"
+                + "Now you have " + size + " tasks in the list.";
         return addTaskMsg;
     }
 
@@ -79,10 +79,9 @@ public class Ui {
      * @param size
      */
     public String showDeleteTask(Task task, int size) {
-        String deleteMsg = "Noted. I've removed this task:\n" + task +
-                "\nNow you have " + size + " tasks in the list.";
+        String deleteMsg = "Noted. I've removed this task:\n" + task
+                + "\nNow you have " + size + " tasks in the list.";
         return deleteMsg;
-
     }
 
     /**
@@ -114,7 +113,12 @@ public class Ui {
         return errorMsg;
     }
 
-    public String showFindTask(TaskList tasks){
+    /**
+     *
+     * @param tasks list of tasks in the data
+     * @return tasks found
+     */
+    public String showFindTask(TaskList tasks) {
         String findTaskMsg = "Here are the matching tasks in your list:\n" + tasks;
         return findTaskMsg;
     }

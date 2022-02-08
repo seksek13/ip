@@ -10,10 +10,10 @@ public class Event extends Task {
      *
      * @param description Description of event
      * @param at Date and time of event
-     * @param done Status of task
+     * @param isDone Status of task
      */
-    public Event(String description, LocalDateTime at, boolean done) {
-        super(description,done);
+    public Event(String description, LocalDateTime at, boolean isDone) {
+        super(description, isDone);
         this.at = at;
     }
     /**

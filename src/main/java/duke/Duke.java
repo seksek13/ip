@@ -3,6 +3,8 @@ package duke;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Duke {
 
@@ -34,6 +36,9 @@ public class Duke {
         try {
             String[] commands = Parser.parse(input);
             if (commands[0].equals("bye")) {
+                new Timer().schedule(new TimerTask() {
+                    public void run () { System.exit(0); }
+                }, 2000);
                 return ui.showBye();
 
             } else if (commands[0].equals("list")) {
@@ -54,7 +59,7 @@ public class Duke {
                 if (indexOfTask > tasks.size()) {
                     return ui.showOutOfArray();
                 } else {
-                    Task mark = tasks.UnmarkTask(indexOfTask - 1);
+                    Task mark = tasks.unmarkTask(indexOfTask - 1);
                     storage.updateTaskStatus(indexOfTask, false);
                     return ui.showUnmarkTask(mark);
                 }
@@ -100,7 +105,7 @@ public class Duke {
                     count++;
                 }
                 return ui.showFindTask(t);
-            }else{
+            } else {
                 return "You have entered an invalid command! :(";
             }
         } catch (DukeException | IOException | IllegalArgumentException e) {

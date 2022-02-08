@@ -68,7 +68,7 @@ public class TaskList {
      * @param index
      * @return tasked marked as undone
      */
-    public Task UnmarkTask(int index) {
+    public Task unmarkTask(int index) {
         Task t = tasks.get(index);
         t.markAsNotDone();
         return t;
@@ -90,11 +90,11 @@ public class TaskList {
      * @param key
      * @return
      */
-    public Task[] find(String key){
+    public Task[] find(String key) {
         Task[] t = new Task[100];
         int count = 0;
-        for(int i=0;i< tasks.size();i++){
-            if(tasks.get(i).description.contains(key)) {
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).description.contains(key)) {
                 t[count] = tasks.get(i);
                 count++;
             }
@@ -109,8 +109,8 @@ public class TaskList {
      */
     public String toString() {
         String taskList = "";
-        for(int i=0;i< tasks.size();i++){
-            int count = i+1;
+        for (int i = 0; i < tasks.size(); i++) {
+            int count = i + 1;
             taskList += count + "." + tasks.get(i) + "\n";
         }
         return taskList;

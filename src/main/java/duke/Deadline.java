@@ -1,10 +1,11 @@
 package duke;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
 
-    protected LocalDateTime by; 
+    protected LocalDateTime by;
 
     /**
      * Deadline task constructor
@@ -14,7 +15,7 @@ public class Deadline extends Task {
      * @param isDone status of task
      */
     public Deadline(String description, LocalDateTime by, boolean isDone) {
-        super(description,isDone);
+        super(description, isDone);
         this.by = by;
     }
 

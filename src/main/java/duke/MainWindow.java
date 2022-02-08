@@ -23,9 +23,12 @@ public class MainWindow extends AnchorPane {
     private Duke duke;
     private final Ui ui = new Ui();
 
-    private Image bear = new Image(this.getClass().getResourceAsStream("/images/Bear.jpg"));
-    private Image penguin = new Image(this.getClass().getResourceAsStream("/images/Penguin.jpg"));
+    private Image bear = new Image(this.getClass().getResourceAsStream("/images/original.png"));
+    private Image penguin = new Image(this.getClass().getResourceAsStream("/images/tonkatsu.png"));
 
+    /**
+     * Creates dialog box with welcome message shown
+     */
     @FXML
     public void initialize() {
 

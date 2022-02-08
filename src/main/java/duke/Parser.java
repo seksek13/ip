@@ -25,7 +25,7 @@ public class Parser {
             String[] cmd = command.split(" ");
             String[] descriptions = new String[] { "mark", cmd[1]};
             return descriptions;
-        } else if(command.startsWith("unmark")){
+        } else if (command.startsWith("unmark")) {
             String[] cmd = command.split(" ");
             String[] descriptions = new String[] { "unmark", cmd[1] };
             return descriptions;
@@ -35,7 +35,7 @@ public class Parser {
             return descriptions;
         } else if (command.startsWith("todo")) {
             String[] cmds = command.split("todo ");
-            if (cmds.length!=2) {
+            if (cmds.length != 2) {
                 throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
             }
             String[] descriptions = new String[] { "todo", cmds[1] };
@@ -47,7 +47,7 @@ public class Parser {
             String[] cmd = command.split("deadline ");
             String[] task = cmd[1].split("/by ");
 
-            if(task.length!=2) {
+            if (task.length != 2) {
                 throw new DukeException("OOPS!!! The description of the deadline is not complete!");
             }
             try {
@@ -55,33 +55,35 @@ public class Parser {
                 LocalDateTime formattedDate = LocalDateTime.parse(task[1], format);
 
             } catch (DateTimeException e) {
-                throw new DukeException("'" + task[1] + "' is in wrong format! Please enter date and time as dd/MM/yyyy HH:mm");
+                throw new DukeException("'" + task[1] + "' is in wrong format! "
+                        + "Please enter date and time as dd/MM/yyyy HH:mm");
             }
             String[] descriptions = new String[] { "deadline", task[0], task[1] };
             return descriptions;
         } else if (command.startsWith("event")) {
             if (command.equals("event")) {
-                throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
+                throw new DukeException("OOPS!!! The description of a event cannot be empty.");
             }
             String[] cmd = command.split("event ");
             String[] task = cmd[1].split("/at ");
 
-            if(task.length!=2){
-                throw new DukeException("☹ OOPS!!! The description of the event is not complete!");
+            if (task.length != 2) {
+                throw new DukeException("OOPS!!! The description of the event is not complete!");
             }
             try {
                 DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
                 LocalDateTime formattedDate = LocalDateTime.parse(task[1], format);
 
             } catch (DateTimeException e) {
-                throw new DukeException("'" + task[1] + "' is in wrong format! Please enter date and time as dd/MM/yyyy HH:mm");
+                throw new DukeException("'" + task[1] + "' is in wrong format! "
+                        + "Please enter date and time as dd/MM/yyyy HH:mm");
             }
             String[] descriptions = new String[] { "event", task[0], task[1] };
             return descriptions;
 
-        } else if(command.startsWith("find")){
-            if(command.equals("find")){
-                throw new DukeException("☹ OOPS!!! Please enter what to find!");
+        } else if (command.startsWith("find")) {
+            if (command.equals("find")) {
+                throw new DukeException("OOPS!!! Please enter what to find!");
             }
             String[] cmd = command.split("find ");
             String[] descriptions = new String[]{ "find", cmd[1]};

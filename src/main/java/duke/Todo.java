@@ -1,5 +1,6 @@
 package duke;
-public class Todo extends Task{
+
+public class Todo extends Task {
 
     /**
      * Todo constructor

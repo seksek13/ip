@@ -1,4 +1,5 @@
 package duke;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -25,14 +26,14 @@ public class Task {
     /**
      * Mark the task as done
      */
-    public void markAsDone(){
+    public void markAsDone() {
         this.isDone = true;
     }
 
     /**
      * Mark the task as undone
      */
-    public void markAsNotDone(){
+    public void markAsNotDone() {
         this.isDone = false;
     }
 
