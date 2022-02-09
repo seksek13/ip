@@ -47,14 +47,12 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() throws DukeException {
-        System.out.println("getting user input");
+
         String input = userInput.getText();
-        System.out.println("getting response");
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, bear),
                 DialogBox.getDukeDialog(response, penguin)
-
         );
         userInput.clear();
     }

@@ -27,6 +27,8 @@ public class Storage {
      */
     public ArrayList<Task> load() throws IOException {
         ArrayList<Task> tasks = new ArrayList<Task>(100);
+        boolean isCorrectLength;
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         try {
             File file = new File("./data/duke.txt");
             Scanner fileData = new Scanner(file);
@@ -38,32 +40,33 @@ public class Storage {
 
                 switch (taskType) {
                 case "T":
-                    if (dataSplited.length != 3) {
+                    isCorrectLength = (dataSplited.length == 3);
+                    if (!isCorrectLength) {
                         System.out.println("data: " + data + " not in correct format!");
-                    } else {
-                        Task t = new Todo(dataSplited[2], isDone);
-                        tasks.add(t);
+                        break;
                     }
+                    Task todo = new Todo(dataSplited[2], isDone);
+                    tasks.add(todo);
                     break;
                 case "D":
-                    if (dataSplited.length != 4) {
+                    isCorrectLength = (dataSplited.length == 4);
+                    if (!isCorrectLength) {
                         System.out.println("data: " + data + " not in correct format!");
-                    } else {
-                        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-                        LocalDateTime formattedDate = LocalDateTime.parse(dataSplited[3], format);
-                        Task t = new Deadline(dataSplited[2], formattedDate, isDone);
-                        tasks.add(t);
+                        break;
                     }
+                    LocalDateTime deadlineDateFormatted = LocalDateTime.parse(dataSplited[3], format);
+                    Task deadline = new Deadline(dataSplited[2], deadlineDateFormatted, isDone);
+                    tasks.add(deadline);
                     break;
                 case "E":
-                    if (dataSplited.length != 4) {
+                    isCorrectLength = (dataSplited.length == 4);
+                    if (!isCorrectLength) {
                         System.out.println("data: " + data + " not in correct format!");
-                    } else {
-                        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-                        LocalDateTime formattedDate = LocalDateTime.parse(dataSplited[3], format);
-                        Task t = new Event(dataSplited[2], formattedDate, isDone);
-                        tasks.add(t);
+                        break;
                     }
+                    LocalDateTime eventDateFormatted = LocalDateTime.parse(dataSplited[3], format);
+                    Task event = new Event(dataSplited[2], eventDateFormatted, isDone);
+                    tasks.add(event);
                     break;
                 default:
                     System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");

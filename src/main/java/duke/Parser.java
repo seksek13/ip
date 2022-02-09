@@ -1,10 +1,14 @@
 package duke;
 
-import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.HashSet;
+
 
 public class Parser {
+
+    public static final String DATE_TIME_PATTERN = "dd/MM/yyyy HH:mm";
 
     /**
      * Getting required info from user input
@@ -15,8 +19,26 @@ public class Parser {
      */
     public static String[] parse(String command) throws DukeException {
 
+        HashSet<String> commandsWithArgs = new HashSet<>();
+        commandsWithArgs.add("mark");
+        commandsWithArgs.add("unmark");
+        commandsWithArgs.add("delete");
+        commandsWithArgs.add("todo");
+        commandsWithArgs.add("deadline");
+        commandsWithArgs.add("event");
+        commandsWithArgs.add("find");
+
+        if (commandsWithArgs.contains(command)) {
+            String[] splitedcmd = command.split(" ");
+            if (splitedcmd.length < 2) {
+                String message = String.format("OOPS! "
+                        + "The description of a %s cannot be empty.", command);
+                throw new DukeException(message);
+            }
+        }
+
         if (command.equals("bye")) {
-            String[] descriptions = new String[] { "bye" };
+            String[] descriptions = new String[] { "bye" , "0" };
             return descriptions;
         } else if (command.equals("list")) {
             String[] descriptions = new String[] { "list" };
@@ -35,46 +57,27 @@ public class Parser {
             return descriptions;
         } else if (command.startsWith("todo")) {
             String[] cmds = command.split("todo ");
-            if (cmds.length != 2) {
-                throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
-            }
             String[] descriptions = new String[] { "todo", cmds[1] };
             return descriptions;
         } else if (command.startsWith("deadline")) {
-            if (command.equals("deadline")) {
-                throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
-            }
             String[] cmd = command.split("deadline ");
             String[] task = cmd[1].split("/by ");
-
-            if (task.length != 2) {
-                throw new DukeException("OOPS!!! The description of the deadline is not complete!");
-            }
-            try {
-                DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-                LocalDateTime formattedDate = LocalDateTime.parse(task[1], format);
-
-            } catch (DateTimeException e) {
+            boolean isDateEmpty = task[1].isEmpty();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
+            LocalDateTime deadlineDate = parseDateTime(task[1], dtf);
+            if (deadlineDate == null || isDateEmpty) {
                 throw new DukeException("'" + task[1] + "' is in wrong format! "
                         + "Please enter date and time as dd/MM/yyyy HH:mm");
             }
             String[] descriptions = new String[] { "deadline", task[0], task[1] };
             return descriptions;
         } else if (command.startsWith("event")) {
-            if (command.equals("event")) {
-                throw new DukeException("OOPS!!! The description of a event cannot be empty.");
-            }
             String[] cmd = command.split("event ");
             String[] task = cmd[1].split("/at ");
-
-            if (task.length != 2) {
-                throw new DukeException("OOPS!!! The description of the event is not complete!");
-            }
-            try {
-                DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-                LocalDateTime formattedDate = LocalDateTime.parse(task[1], format);
-
-            } catch (DateTimeException e) {
+            boolean isDateEmpty = task[1].isEmpty();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
+            LocalDateTime deadlineDate = parseDateTime(task[1], dtf);
+            if (deadlineDate == null || isDateEmpty) {
                 throw new DukeException("'" + task[1] + "' is in wrong format! "
                         + "Please enter date and time as dd/MM/yyyy HH:mm");
             }
@@ -82,15 +85,26 @@ public class Parser {
             return descriptions;
 
         } else if (command.startsWith("find")) {
-            if (command.equals("find")) {
-                throw new DukeException("OOPS!!! Please enter what to find!");
-            }
             String[] cmd = command.split("find ");
             String[] descriptions = new String[]{ "find", cmd[1]};
             return descriptions;
-
         } else {
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
+
+    /**
+     * Parses date and time input by user and returns valid LocalDateTime
+     *
+     * @return date and time information
+     */
+    private static LocalDateTime parseDateTime(String s, DateTimeFormatter dtf) {
+        try {
+            LocalDateTime dateTime = LocalDateTime.parse(s, dtf);
+            return dateTime;
+        } catch (DateTimeParseException e) {
+            return null;
+        }
+    }
+
 }
