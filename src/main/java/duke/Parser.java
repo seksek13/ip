@@ -8,7 +8,7 @@ import java.util.HashSet;
 
 public class Parser {
 
-    public static final String DATE_TIME_PATTERN = "yyyy-MM-dd HHmm";
+    public static final String DATE_TIME_PATTERN = "dd/MM/yyyy HH:mm";
 
     /**
      * Getting required info from user input
