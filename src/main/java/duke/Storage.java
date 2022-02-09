@@ -73,6 +73,8 @@ public class Storage {
             fileData.close();
             return tasks;
         } catch (FileNotFoundException e) {
+            assert filePath != null : "File path is not supposed to be null.";
+
             File directory = new File("./data");
             if (!directory.exists()) {
                 directory.mkdir();
