@@ -1,4 +1,6 @@
 package duke;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -96,6 +98,27 @@ public class TaskList {
         int count = 0;
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).description.contains(key)) {
+                t[count] = tasks.get(i);
+                count++;
+            }
+        }
+        return t;
+    }
+
+    /**
+     *
+     * @param date task due by
+     * @return list of task that are due soon
+     */
+    public Task[] reminder(String date) {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime formattedDate = LocalDateTime.parse(date, format);
+        Task[] t = new Task[100];
+        int count = 0;
+        for (int i = 0; i < tasks.size(); i++) {
+            boolean isBeforeDueDate = tasks.get(i).getDateTime().isBefore(formattedDate);
+            boolean isAfterCurrentDate = tasks.get(i).getDateTime().isAfter(LocalDateTime.now());
+            if (isBeforeDueDate && isAfterCurrentDate) {
                 t[count] = tasks.get(i);
                 count++;
             }

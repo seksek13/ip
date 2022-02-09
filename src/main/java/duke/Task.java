@@ -1,8 +1,11 @@
 package duke;
 
+import java.time.LocalDateTime;
+
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected LocalDateTime dateTime;
 
     /**
      * Constructor for task
@@ -12,6 +15,7 @@ public class Task {
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
+        this.dateTime = LocalDateTime.parse("1700-01-01T00:00:00");
     }
 
     /**
@@ -21,6 +25,10 @@ public class Task {
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
+    }
+
+    public LocalDateTime getDateTime() {
+        return this.dateTime;
     }
 
     /**

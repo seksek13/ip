@@ -32,7 +32,6 @@ public class Duke {
     /**
      * Method to run entire programme
      */
-    @SuppressWarnings("checkstyle:Indentation")
     public String getResponse(String input) throws DukeException {
 
         try {
@@ -58,6 +57,8 @@ public class Duke {
                 return deleteTask(index);
             } else if (commands[0].equals("find")) {
                 return findTasks(commands[1]);
+            } else if (commands[0].equals("reminder")) {
+                return reminder(commands[1]);
             } else {
                 return "You have entered an invalid command! :(";
             }
@@ -147,5 +148,16 @@ public class Duke {
             count++;
         }
         return ui.showFindTask(taskList);
+    }
+
+    private String reminder(String date) {
+        TaskList taskList = new TaskList();
+        Task[] remiderTask = tasks.reminder(date);
+        int count = 0;
+        while (remiderTask[count] != null) {
+            taskList.addTask(remiderTask[count]);
+            count++;
+        }
+        return ui.showReminder(taskList, date);
     }
 }

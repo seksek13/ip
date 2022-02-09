@@ -25,6 +25,10 @@ public class Event extends Task {
         return this.at.format(DateTimeFormatter.ofPattern("MMM dd yyyy 'at' hh:mm a"));
     }
 
+    public LocalDateTime getDateTime() {
+        return this.at;
+    }
+
     /**
      * Overrides toString method
      *

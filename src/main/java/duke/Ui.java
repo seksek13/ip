@@ -124,5 +124,14 @@ public class Ui {
         return findTaskMsg;
     }
 
+    /**
+     *
+     * @param tasks list of task that are approaching the deadline
+     * @return reminder message
+     */
+    public String showReminder(TaskList tasks, String date) {
+        String showReminderMsg = "These are the task that will be due by " + date + "\n" + tasks;
+        return showReminderMsg;
+    }
 
 }

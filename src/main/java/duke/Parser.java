@@ -38,7 +38,7 @@ public class Parser {
         }
 
         if (command.equals("bye")) {
-            String[] descriptions = new String[] { "bye" , "0" };
+            String[] descriptions = new String[] { "bye"};
             return descriptions;
         } else if (command.equals("list")) {
             String[] descriptions = new String[] { "list" };
@@ -88,6 +88,17 @@ public class Parser {
             String[] cmd = command.split("find ");
             String[] descriptions = new String[]{ "find", cmd[1]};
             return descriptions;
+        } else if (command.startsWith("reminder")) {
+            String[] cmd = command.split("reminder ");
+            boolean isDateEmpty = cmd[1].isEmpty();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
+            LocalDateTime deadlineDate = parseDateTime(cmd[1], dtf);
+            if (deadlineDate == null || isDateEmpty) {
+                throw new DukeException("'" + cmd[1] + "' is in wrong format! "
+                        + "Please enter date and time as dd/MM/yyyy HH:mm");
+            }
+            String[] descriptions = new String[] { "reminder", cmd[1]};
+            return descriptions;
         } else {
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
@@ -106,5 +117,4 @@ public class Parser {
             return null;
         }
     }
-
 }

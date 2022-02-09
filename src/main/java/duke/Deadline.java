@@ -19,6 +19,10 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    public LocalDateTime getDateTime() {
+        return this.by;
+    }
+
     /**
      * Parse date into MMM dd yyyy format
      *
