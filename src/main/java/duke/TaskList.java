@@ -118,7 +118,8 @@ public class TaskList {
         for (int i = 0; i < tasks.size(); i++) {
             boolean isBeforeDueDate = tasks.get(i).getDateTime().isBefore(formattedDate);
             boolean isAfterCurrentDate = tasks.get(i).getDateTime().isAfter(LocalDateTime.now());
-            if (isBeforeDueDate && isAfterCurrentDate) {
+            boolean isTaskDone = tasks.get(i).getIsDone();
+            if (!isTaskDone && isBeforeDueDate && isAfterCurrentDate) {
                 t[count] = tasks.get(i);
                 count++;
             }

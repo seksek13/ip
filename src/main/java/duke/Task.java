@@ -27,6 +27,10 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    public boolean getIsDone() {
+        return this.isDone;
+    }
+
     public LocalDateTime getDateTime() {
         return this.dateTime;
     }
@@ -53,4 +57,6 @@ public class Task {
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
     }
+
+
 }
