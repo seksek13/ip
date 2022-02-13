@@ -125,11 +125,11 @@ Expected outcome:
 
 Reminders about task that will be due on the date entered by user
 
-Command Format: `reminder dd/MM/yyyy`
+Command Format: `reminder dd/MM/yyyy HH:mm`
 
 Example of usage: 
 
-`reminder 13/12/2022`
+`reminder 13/12/2022 00:00`
 
 Expected outcome:
 
