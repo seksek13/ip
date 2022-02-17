@@ -34,7 +34,7 @@ public class MainWindow extends AnchorPane {
 
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         String welcomeText = ui.showWelcomeMessage();
-        dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(welcomeText, penguin));
+        dialogContainer.getChildren().addAll(DialogBox.getResponseDialog(welcomeText, penguin));
     }
 
     public void setDuke(Duke duke) {
@@ -52,7 +52,7 @@ public class MainWindow extends AnchorPane {
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, bear),
-                DialogBox.getDukeDialog(response, penguin)
+                DialogBox.getResponseDialog(response, penguin)
         );
         userInput.clear();
     }

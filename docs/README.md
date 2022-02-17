@@ -50,7 +50,7 @@ Commmand Format: `deadline TASK_DESCRIPTION /by dd/MM/yyyy HH:mm`
 
 Example of usage: 
 
-`deadline return book /by 10/12/2022 17:00`
+`deadline submit assignments /by 10/12/2022 17:00`
 
 Expected outcome:
 
@@ -63,7 +63,7 @@ Command Format: `event TASK_DESCRIPTION /at dd/MM/yyyy HH:mm`
 
 Example of usage: 
 
-`event project meeeting /at 02/08/2022 14:30`
+`event group meeting /at 02/08/2022 14:30`
 
 Expected outcome:
 
@@ -143,8 +143,6 @@ Command Format: `bye`
 Example of usage: 
 
 `bye`
-
-Expected outcome:
 
 
 

@@ -138,7 +138,6 @@ public class Storage {
     public void updateTaskStatus(int index, boolean isDone) throws IOException {
         File file = new File(filePath);
         Scanner scanner = new Scanner(file);
-        //store the string content of task to be updated
         String task = null;
         StringBuffer buffer = new StringBuffer();
         while (index > 0) {
@@ -147,7 +146,6 @@ public class Storage {
         }
         scanner.close();
         String newData = null;
-        //store updated string
         if (isDone) {
             newData = task.replaceFirst("0", "1");
         } else {

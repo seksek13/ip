@@ -16,7 +16,7 @@ public class Ui {
     /**
      * Read user input
      *
-     * @return
+     * @return user input
      */
     public String readCommand() {
         String userInput = input.nextLine();
@@ -25,6 +25,7 @@ public class Ui {
 
     /**
      * Show error in finding file
+     * @return error message
      */
     public String showFileError() {
         String errorMsg = "No task list file found! Creating a new file for you :)";
@@ -33,6 +34,8 @@ public class Ui {
 
     /**
      * Show that index keyed in is out of list
+     *
+     * @return out of array message
      */
     public String showOutOfArray() {
         String outOfArrayMsg = "Number of task is out of list!";
@@ -44,6 +47,8 @@ public class Ui {
      *
      * @param task
      * @param size
+     *
+     * @return add task to list message
      */
     public String showAddTask(Task task, int size) {
         String addTaskMsg = "Got it. I've added this task:\n" + task + "\n"
@@ -55,6 +60,8 @@ public class Ui {
      * Show task marked as done
      *
      * @param task
+     *
+     * @return mark task message
      */
     public String showMarkTask(Task task) {
         String markTaskMsg = "Nice! I've marked this task as done: \n" + task;
@@ -65,6 +72,8 @@ public class Ui {
      * Show task marked as undone
      *
      * @param task
+     *
+     * @return unmark task message
      */
     public String showUnmarkTask(Task task) {
         String unmarkTaskMsg = "OK, I've marked this task as not done yet!\n" + task;
